@@ -32,3 +32,6 @@
 
 - [**TypeScript Tutorial**](./typescript-tutorial/)
   TypeScript short tutorial.
+
+- [**Learn Next**](./learn-next/)
+  Official Next.js tutorial, needed a refresher for my website.

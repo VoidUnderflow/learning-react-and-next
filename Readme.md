@@ -17,6 +17,9 @@
 - [**Simple form with RHF and Zod**](./rhf-zod-form/)
   Simple form with React Hook Form + validation with Zod.
 
+- [**Simple GitHub Issue Tracker**](./simple-issue-tracker/)
+  Very simple GitHub issue tracker, made to refresh my knowledge of React Query and Redux.
+
 - [**Simple Gallery**](./simple-gallery/)
   Responsive gallery component, adapted from a Wordpress plugin as a proof of concept for a client.
 

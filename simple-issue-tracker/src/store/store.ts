@@ -1,7 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
+import filtersReducer from "./slices/filtersSlice";
+import selectionReducer from "./slices/selectionSlice";
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    filters: filtersReducer,
+    selection: selectionReducer,
+  },
 });
 
 // Get the type of our store variable

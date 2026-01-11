@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { store } from "./store/store.ts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { HeroUIProvider } from "@heroui/system";
 
 // Create React Query client
 const queryClient = new QueryClient({
@@ -18,8 +19,10 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
-        <App />
-        <ReactQueryDevtools initialIsOpen={false} />
+        <HeroUIProvider>
+          <App />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </HeroUIProvider>
       </QueryClientProvider>
     </Provider>
   </StrictMode>

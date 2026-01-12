@@ -35,6 +35,21 @@ function App() {
     error,
   } = useIssues(submittedOwner, submittedRepo);
 
+  // Derived state: filter issues based on Redux state
+  const filteredIssues = issues?.filter((issue) => {
+    // Filter by state (open/closed)
+    if (showOpenOnly && issue.state !== "open") {
+      return false;
+    }
+
+    // Filter by minimum comments
+    if (issue.comments < minComments) {
+      return false;
+    }
+
+    return true;
+  });
+
   useEffect(() => {
     document.documentElement.classList.toggle("dark", darkMode);
   }, [darkMode]);
@@ -110,19 +125,25 @@ function App() {
             <h3 className="text-sm font-semibold mb-2">Issues:</h3>
             {isLoading && <p>Loading...</p>}
             {isError && <p className="text-red-500">Error: {error?.message}</p>}
-            {issues && (
+            {filteredIssues && (
               <div className="space-y-2">
                 <p className="text-sm text-default-500">
-                  {issues.length} issues found
+                  {filteredIssues.length} of {issues?.length} issues (after
+                  filters)
                 </p>
-                {issues.slice(0, 5).map((issue) => (
+                {filteredIssues.map((issue) => (
                   <div
                     key={issue.id}
                     className="border-b border-default-200 pb-2"
                   >
-                    <p className="font-semibold">
+                    <a
+                      href={issue.html_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-semibold hover:text-primary transition-colors"
+                    >
                       #{issue.number} {issue.title}
-                    </p>
+                    </a>
                     <p className="text-sm text-default-500">
                       {issue.state} • {issue.comments} comments • by{" "}
                       {issue.user.login}
@@ -131,15 +152,6 @@ function App() {
                 ))}
               </div>
             )}
-          </CardBody>
-        </Card>
-
-        <Card>
-          <CardBody>
-            <h3 className="text-sm font-semibold mb-2">Current State:</h3>
-            <pre className="text-sm bg-default-100 p-3 rounded-lg">
-              {JSON.stringify({ showOpenOnly, minComments, darkMode }, null, 2)}
-            </pre>
           </CardBody>
         </Card>
       </div>

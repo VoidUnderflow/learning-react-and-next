@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "./store/hooks";
 import {
   setShowOpenOnly,
@@ -6,6 +6,7 @@ import {
   resetFilters,
 } from "./store/slices/filtersSlice";
 import { toggleDarkMode } from "./store/slices/uiSlice";
+import { useIssues } from "./hooks/useIssues";
 import { Checkbox } from "@heroui/checkbox";
 import { Input } from "@heroui/input";
 import { Button } from "@heroui/button";
@@ -17,6 +18,22 @@ function App() {
   );
   const { darkMode } = useAppSelector((state) => state.ui);
   const dispatch = useAppDispatch();
+
+  // Input state
+  const [owner, setOwner] = useState("facebook");
+  const [repo, setRepo] = useState("react");
+
+  // Submitted state for fetching
+  const [submittedOwner, setSubmittedOwner] = useState("facebook");
+  const [submittedRepo, setSubmittedRepo] = useState("react");
+
+  // Fetch issues
+  const {
+    data: issues,
+    isLoading,
+    isError,
+    error,
+  } = useIssues(submittedOwner, submittedRepo);
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", darkMode);
@@ -45,6 +62,30 @@ function App() {
             </Checkbox>
 
             <Input
+              type="text"
+              label="Repository owner"
+              value={owner}
+              onChange={(e) => setOwner(e.target.value)}
+            />
+
+            <Input
+              type="text"
+              label="Repository Name"
+              value={repo}
+              onChange={(e) => setRepo(e.target.value)}
+            />
+
+            <Button
+              color="primary"
+              onPress={() => {
+                setSubmittedOwner(owner);
+                setSubmittedRepo(repo);
+              }}
+            >
+              Fetch Issues
+            </Button>
+
+            <Input
               type="number"
               label="Minimum comments"
               value={minComments.toString()}
@@ -61,6 +102,35 @@ function App() {
             >
               Reset Filters
             </Button>
+          </CardBody>
+        </Card>
+
+        <Card>
+          <CardBody>
+            <h3 className="text-sm font-semibold mb-2">Issues:</h3>
+            {isLoading && <p>Loading...</p>}
+            {isError && <p className="text-red-500">Error: {error?.message}</p>}
+            {issues && (
+              <div className="space-y-2">
+                <p className="text-sm text-default-500">
+                  {issues.length} issues found
+                </p>
+                {issues.slice(0, 5).map((issue) => (
+                  <div
+                    key={issue.id}
+                    className="border-b border-default-200 pb-2"
+                  >
+                    <p className="font-semibold">
+                      #{issue.number} {issue.title}
+                    </p>
+                    <p className="text-sm text-default-500">
+                      {issue.state} • {issue.comments} comments • by{" "}
+                      {issue.user.login}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
           </CardBody>
         </Card>
 

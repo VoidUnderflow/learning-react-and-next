@@ -22,3 +22,17 @@ Users should be able to:
 ### Extensions
 
 ### Built with
+
+### Current plan
+
+1. Make a list of ShadCN components you'll need + install them.
+2. Layout + styling for desktop and mobile, with static data.
+3. Inspect API + data formats.
+4. Fetch data + select components.
+5. Implement unit selector menu functionality.
+6. Implement day selector (separate fetch?).
+7. Implement search functionality.
+8. Save current location in local storage.
+9. Allow location search?
+10. Implement pages for: no search result found + API error + generic error.
+11. Implement hourly forecast scrollbar.

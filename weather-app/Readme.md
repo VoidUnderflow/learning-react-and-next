@@ -25,7 +25,6 @@ Users should be able to:
 
 ### Current plan
 
-1. Make a list of ShadCN components you'll need + install them.
 2. Layout + styling for desktop and mobile, with static data.
 3. Inspect API + data formats.
 4. Fetch data + select components.

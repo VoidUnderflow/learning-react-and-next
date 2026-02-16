@@ -36,18 +36,18 @@ interface UnitStore {
 export const useUnitStore = create<UnitStore>()(
   persist(
     (set) => ({
-      temperatureUnit: "celsius",
-      speedUnit: "kmh",
-      precipitationUnit: "mm",
+      temperatureUnit: TemperatureUnit.CELSIUS,
+      speedUnit: SpeedUnit.KMH,
+      precipitationUnit: PrecipitationUnit.MM,
 
       setTemperatureUnit: (unit) => set({ temperatureUnit: unit }),
       setSpeedUnit: (unit) => set({ speedUnit: unit }),
       setPrecipitationUnit: (unit) => set({ precipitationUnit: unit }),
       setAllToMetric: () =>
         set({
-          temperatureUnit: "celsius",
-          speedUnit: "kmh",
-          precipitationUnit: "mm",
+          temperatureUnit: TemperatureUnit.CELSIUS,
+          speedUnit: SpeedUnit.KMH,
+          precipitationUnit: PrecipitationUnit.MM,
         }),
     }),
     {

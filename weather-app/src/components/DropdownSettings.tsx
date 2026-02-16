@@ -10,12 +10,25 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
-import { useState } from "react";
+import {
+  PrecipitationUnit,
+  SpeedUnit,
+  TemperatureUnit,
+  useUnitStore,
+} from "@/stores/unitStore";
 
 export function DropdownSettings() {
-  const [temperatureUnit, setTemperatureUnit] = useState("Celsius");
-  const [speedUnit, setSpeedUnit] = useState("km/h");
-  const [precipitationUnit, setPrecipitationUnit] = useState("mm");
+  const temperatureUnit = useUnitStore((state) => state.temperatureUnit);
+  const speedUnit = useUnitStore((state) => state.speedUnit);
+  const precipitationUnit = useUnitStore((state) => state.precipitationUnit);
+
+  const setTemperatureUnit = useUnitStore((state) => state.setTemperatureUnit);
+  const setSpeedUnit = useUnitStore((state) => state.setSpeedUnit);
+  const setPrecipitationUnit = useUnitStore(
+    (state) => state.setPrecipitationUnit
+  );
+
+  const setAllToMetric = useUnitStore((state) => state.setAllToMetric);
 
   return (
     <DropdownMenu>
@@ -24,17 +37,19 @@ export function DropdownSettings() {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-40">
         <DropdownMenuGroup>
-          <DropdownMenuItem>Switch to metric</DropdownMenuItem>
+          <DropdownMenuItem onClick={setAllToMetric}>
+            Switch to metric
+          </DropdownMenuItem>
           {/* Temperature */}
           <DropdownMenuLabel>Temperature</DropdownMenuLabel>
           <DropdownMenuRadioGroup
             value={temperatureUnit}
             onValueChange={setTemperatureUnit}
           >
-            <DropdownMenuRadioItem value="Celsius">
+            <DropdownMenuRadioItem value={TemperatureUnit.CELSIUS}>
               Celsius (°C)
             </DropdownMenuRadioItem>
-            <DropdownMenuRadioItem value="Fahrenheit">
+            <DropdownMenuRadioItem value={TemperatureUnit.FAHRENHEIT}>
               Fahrenheit (°F)
             </DropdownMenuRadioItem>
           </DropdownMenuRadioGroup>
@@ -45,19 +60,27 @@ export function DropdownSettings() {
             value={speedUnit}
             onValueChange={setSpeedUnit}
           >
-            <DropdownMenuRadioItem value="kmh">km/h</DropdownMenuRadioItem>
-            <DropdownMenuRadioItem value="mph">mph</DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value={SpeedUnit.KMH}>
+              km/h
+            </DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value={SpeedUnit.MPH}>
+              mph
+            </DropdownMenuRadioItem>
           </DropdownMenuRadioGroup>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuRadioGroup
           value={precipitationUnit}
-          onValueChange={setPrecipitationUnit}
+          onValueChange={(value) =>
+            setPrecipitationUnit(value as PrecipitationUnit)
+          }
         >
-          <DropdownMenuRadioItem value="mm">
+          <DropdownMenuRadioItem value={PrecipitationUnit.MM}>
             Millimeters (mm)
           </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="in">Inches (in)</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value={PrecipitationUnit.IN}>
+            Inches (in)
+          </DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>

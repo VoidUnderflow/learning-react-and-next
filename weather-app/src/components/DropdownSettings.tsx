@@ -33,9 +33,13 @@ export function DropdownSettings() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="default">Open</Button>
+        <Button variant="default">
+          <img src="/images/icon-units.svg" alt="" className="size-4" />
+          Units
+          <img src="/images/icon-dropdown.svg" alt="" className="size-4" />
+        </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-40">
+      <DropdownMenuContent className="w-48">
         <DropdownMenuGroup>
           <DropdownMenuItem onClick={setAllToMetric}>
             Switch to metric
@@ -69,6 +73,8 @@ export function DropdownSettings() {
           </DropdownMenuRadioGroup>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
+        {/* Precipitation */}
+        <DropdownMenuLabel>Precipitation</DropdownMenuLabel>
         <DropdownMenuRadioGroup
           value={precipitationUnit}
           onValueChange={(value) =>

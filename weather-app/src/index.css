@@ -84,6 +84,9 @@ body {
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-search: var(--search);
+  --color-search-foreground: var(--search-foreground);
+  --color-search-active: var(--search-active);
   --color-destructive: var(--destructive);
   --color-border: var(--border);
   --color-input: var(--input);
@@ -105,8 +108,8 @@ body {
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --background: var(--color-neutral-900);
+  --foreground: var(--color-neutral-0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: var(--color-neutral-800);
@@ -120,6 +123,9 @@ body {
   --neutral: var(--color-neutral-300);
   --accent: var(--color-neutral-600);
   --accent-foreground: var(--color-neutral-0);
+  --search: var(--color-blue-500);
+  --search-foreground: var(--color-neutral-0);
+  --search-active: var(--color-blue-700);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);

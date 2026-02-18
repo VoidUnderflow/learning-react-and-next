@@ -1,4 +1,5 @@
 import { DropdownSettings } from "./components/DropdownSettings";
+import { SearchInput } from "./components/SearchInput";
 
 function App() {
   return (
@@ -10,6 +11,10 @@ function App() {
         </div>
         <DropdownSettings />
       </div>
+      <div className="flex flex-col items-center">
+        <SearchInput />
+      </div>
+      {/* Search bar */}
     </div>
   );
 }

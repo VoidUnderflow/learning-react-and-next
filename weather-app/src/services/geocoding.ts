@@ -30,3 +30,12 @@ export async function searchLocation(
   const parsed = GeocodingResponseSchema.parse(response.data);
   return parsed.results ?? [];
 }
+
+export function displayLocation(
+  location: GeocodingResult,
+  excludeName: boolean = false
+): string {
+  const strs: (string | undefined)[] = excludeName ? [] : [location.name];
+  strs.push(...[location.country, location.admin1, location.admin2]);
+  return strs.filter((x) => x !== undefined).join(", ");
+}

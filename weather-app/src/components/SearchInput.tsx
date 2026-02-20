@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { displayLocation, type GeocodingResult } from "@/services/geocoding";
 
 export function SearchInput() {
+  // TODO: Do we need to split this into multiple things?
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [selectedLocation, setSelectedLocation] =
     useState<GeocodingResult | null>(null);

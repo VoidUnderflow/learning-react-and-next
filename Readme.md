@@ -11,6 +11,9 @@
 - [**Next.js streaming + React Suspense tutorial**](./nextjs-streaming-tutorial)
   Following this [tutorial](https://www.freecodecamp.org/news/the-nextjs-15-streaming-handbook/).
 
+- [**Pagination Experiments**](./pagination-experiments/)
+  Implementing different ways to do pagination (including infinite scroll) while fetching from an external live API.
+
 - [**React Complete Guide**](./react-complete-guide/)
   Covers React fundamentals, common libraries (Redux, Router, Query, Motion), and a short Next.js intro.
 

@@ -121,10 +121,16 @@
     * {
         @apply border-border outline-ring/50;
     }
+
     body {
         @apply bg-background text-foreground;
     }
+
     html {
         @apply font-mono;
+    }
+
+    .page-layout {
+        @apply flex flex-col items-center gap-8 pt-32;
     }
 }

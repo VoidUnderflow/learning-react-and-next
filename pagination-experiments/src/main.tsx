@@ -1,14 +1,20 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App.tsx";
+import HomePage from "./pages/HomePage.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import PageBased from "./pages/PageBased.tsx";
+import InfiniteScroll from "./pages/InfiniteScroll.tsx";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <App />,
+        Component: HomePage,
+        children: [
+            { path: "/pageBased", Component: PageBased },
+            { path: "/infiniteScroll", Component: InfiniteScroll },
+        ],
     },
 ]);
 

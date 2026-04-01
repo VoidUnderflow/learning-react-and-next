@@ -6,21 +6,43 @@ import {
     CardHeader,
     CardTitle,
 } from "./ui/card";
+import { Separator } from "./ui/separator";
+import { useQuery } from "@tanstack/react-query";
+import { fetchImage } from "@/api/images";
+import { Skeleton } from "./ui/skeleton";
 
 interface ProductCardProps {
     product: Product;
 }
 
-// TODO: Replace direct image fetch with rate-limited version + Skeleton placeholder.
 export function ProductCard({ product }: ProductCardProps) {
+    const {
+        data: image,
+        isLoading,
+        error,
+    } = useQuery({
+        queryKey: ["products", "image", `${product.id}`],
+        queryFn: () => fetchImage(product.images[0]),
+        staleTime: 1000 * 10,
+    });
+
+    let imageSrc;
+    if (!isLoading && !error) imageSrc = URL.createObjectURL(image!);
+
     return (
-        <Card className="relative mx-auto w-full max-w-sm pt-0">
-            <div className="absolute inset-0 z-30 aspect-video bg-black/35" />
-            <img
-                src={product.images[0]}
-                alt="Event cover"
-                className="relative z-20 aspect-video w-full object-cover brightness-60"
-            />
+        <Card className="mx-auto w-full max-w-sm pt-0">
+            <div className="relative aspect-square w-full">
+                {isLoading || error ? (
+                    <Skeleton className="absolute inset-0 rounded-none" />
+                ) : (
+                    <img
+                        src={imageSrc}
+                        alt="Product image"
+                        className="absolute inset-0 h-full w-full object-cover"
+                    />
+                )}
+            </div>
+            <Separator />
             <CardHeader>
                 <CardTitle>{product.title}</CardTitle>
                 <CardDescription>{product.description}</CardDescription>

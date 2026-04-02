@@ -15,7 +15,7 @@ export async function fetchProducts(
     offset: number = 0,
 ): Promise<ProductResponse> {
     const response = await productsClient.get("", {
-        params: { limit, offset },
+        params: { limit, skip: offset },
     });
 
     return ProductResponseSchema.parse(response.data);

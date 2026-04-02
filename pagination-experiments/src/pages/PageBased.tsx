@@ -1,4 +1,3 @@
-import { fetchProducts } from "@/api/products";
 import { ProductCard } from "@/components/ProductCard";
 import {
     Pagination,
@@ -20,7 +19,7 @@ export default function PageBased() {
         maxPage,
         nextPage,
         prevPage,
-        fetchPage,
+        setPage,
     } = useProductsPagination();
 
     return (
@@ -41,24 +40,44 @@ export default function PageBased() {
             <Pagination>
                 <PaginationContent>
                     <PaginationItem>
-                        <PaginationPrevious href="#" />
+                        <PaginationPrevious onClick={() => prevPage()} />
                     </PaginationItem>
+                    {currentPage > 2 && (
+                        <PaginationItem>
+                            <PaginationEllipsis />
+                        </PaginationItem>
+                    )}
+                    {currentPage > 1 && (
+                        <PaginationItem>
+                            <PaginationLink
+                                onClick={() => setPage(currentPage - 1)}
+                            >
+                                {currentPage - 1}
+                            </PaginationLink>
+                        </PaginationItem>
+                    )}
+
                     <PaginationItem>
-                        <PaginationLink href="#">1</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink href="#" isActive>
-                            2
+                        <PaginationLink onClick={() => {}} isActive>
+                            {currentPage}
                         </PaginationLink>
                     </PaginationItem>
+                    {currentPage < maxPage && (
+                        <PaginationItem>
+                            <PaginationLink
+                                onClick={() => setPage(currentPage + 1)}
+                            >
+                                {currentPage + 1}
+                            </PaginationLink>
+                        </PaginationItem>
+                    )}
+                    {currentPage < maxPage - 1 && (
+                        <PaginationItem>
+                            <PaginationEllipsis />
+                        </PaginationItem>
+                    )}
                     <PaginationItem>
-                        <PaginationLink href="#">3</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationEllipsis />
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationNext href="#" />
+                        <PaginationNext onClick={() => nextPage()} />
                     </PaginationItem>
                 </PaginationContent>
             </Pagination>

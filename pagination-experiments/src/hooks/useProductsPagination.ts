@@ -23,7 +23,7 @@ export function useProductsPagination() {
         if (currentPage > 1) setCurrentPage(currentPage - 1);
     };
 
-    const fetchPage = (page: number) => {
+    const setPage = (page: number) => {
         if (page >= 1 && page <= maxPage) setCurrentPage(page);
     };
 
@@ -35,6 +35,6 @@ export function useProductsPagination() {
         maxPage,
         nextPage,
         prevPage,
-        fetchPage,
+        setPage,
     };
 }

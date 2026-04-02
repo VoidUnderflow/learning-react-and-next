@@ -17,7 +17,8 @@ export function useFetchProducts(
     } = useQuery({
         queryKey: ["products", limit, offset],
         queryFn: () => fetchProducts(limit, offset),
-        staleTime: 1000 * 60,
+        staleTime: 1000 * 15,
+        gcTime: 1000 * 30,
     });
 
     return { productResponse, isPending, error };

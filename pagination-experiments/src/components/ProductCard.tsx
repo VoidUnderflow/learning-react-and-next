@@ -15,6 +15,13 @@ interface ProductCardProps {
     product: Product;
 }
 
+function calculateAvgScore(product: Product): number {
+    const avg =
+        product.reviews.reduce((total, curr) => total + curr.rating, 0) /
+        product.reviews.length;
+    return Math.round(avg * 100) / 100;
+}
+
 export function ProductCard({ product }: ProductCardProps) {
     const {
         data: image,
@@ -55,8 +62,10 @@ export function ProductCard({ product }: ProductCardProps) {
                     </div>
                     <div>
                         <p>
-                            {product.reviews[0]?.rating ?? "?"}⭐ (
-                            {product.reviews.length} reviews)
+                            {product.reviews.length > 0
+                                ? calculateAvgScore(product)
+                                : "???"}{" "}
+                            ⭐
                         </p>
                         <p>{product.price}$</p>
                     </div>

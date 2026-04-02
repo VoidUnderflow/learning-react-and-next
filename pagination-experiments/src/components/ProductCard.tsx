@@ -37,7 +37,7 @@ export function ProductCard({ product }: ProductCardProps) {
     if (!isLoading && !error) imageSrc = URL.createObjectURL(image!);
 
     return (
-        <Card className="mx-auto w-full max-w-sm pt-0">
+        <Card className="mx-auto w-sm pt-0">
             <div className="relative aspect-square w-full">
                 {isLoading || error ? (
                     <Skeleton className="absolute inset-0 rounded-none" />

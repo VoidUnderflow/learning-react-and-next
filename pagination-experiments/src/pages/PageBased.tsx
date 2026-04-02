@@ -1,8 +1,8 @@
 import { ProductCard } from "@/components/ProductCard";
+import { PageJumpEllipsis } from "@/components/PageJumpEllipsis";
 import {
     Pagination,
     PaginationContent,
-    PaginationEllipsis,
     PaginationItem,
     PaginationLink,
     PaginationNext,
@@ -44,7 +44,7 @@ export default function PageBased() {
                     </PaginationItem>
                     {currentPage > 2 && (
                         <PaginationItem>
-                            <PaginationEllipsis />
+                            <PageJumpEllipsis maxPage={maxPage} setPage={setPage} />
                         </PaginationItem>
                     )}
                     {currentPage > 1 && (
@@ -73,7 +73,7 @@ export default function PageBased() {
                     )}
                     {currentPage < maxPage - 1 && (
                         <PaginationItem>
-                            <PaginationEllipsis />
+                            <PageJumpEllipsis maxPage={maxPage} setPage={setPage} />
                         </PaginationItem>
                     )}
                     <PaginationItem>

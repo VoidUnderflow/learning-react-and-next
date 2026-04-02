@@ -13,7 +13,13 @@ export const ProductSchema = z.object({
     images: z.array(z.httpUrl()),
 });
 
+export const ProductResponseSchema = z.object({
+    products: z.array(ProductSchema),
+    total: z.int(),
+});
+
 export type Product = z.infer<typeof ProductSchema>;
+export type ProductResponse = z.infer<typeof ProductResponseSchema>;
 
 export const SAMPLE_PRODUCT: Product = {
     id: 0,

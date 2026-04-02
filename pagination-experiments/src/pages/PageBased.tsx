@@ -9,20 +9,19 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination";
-import { useQuery } from "@tanstack/react-query";
+import { useProductsPagination } from "@/hooks/useProductsPagination";
 
 export default function PageBased() {
-    const limit = 30;
-    const offset = 0;
     const {
-        data: products,
+        products,
         isPending,
         error,
-    } = useQuery({
-        queryKey: ["products", limit, offset],
-        queryFn: () => fetchProducts(limit, offset),
-        staleTime: 1000 * 60,
-    });
+        currentPage,
+        maxPage,
+        nextPage,
+        prevPage,
+        fetchPage,
+    } = useProductsPagination();
 
     return (
         <div className="page-layout">

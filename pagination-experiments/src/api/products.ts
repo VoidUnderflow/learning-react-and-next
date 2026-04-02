@@ -1,4 +1,7 @@
-import { ProductSchema, type Product } from "@/schemas/product.schema";
+import {
+    ProductResponseSchema,
+    type ProductResponse,
+} from "@/schemas/product.schema";
 import axios from "axios";
 
 const productsClient = axios.create({
@@ -10,10 +13,10 @@ const productsClient = axios.create({
 export async function fetchProducts(
     limit: number = 30,
     offset: number = 0,
-): Promise<Product[]> {
+): Promise<ProductResponse> {
     const response = await productsClient.get("", {
         params: { limit, offset },
     });
 
-    return ProductSchema.array().parse(response.data?.products);
+    return ProductResponseSchema.parse(response.data);
 }

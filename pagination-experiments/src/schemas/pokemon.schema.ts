@@ -20,7 +20,7 @@ export const PokemonSchema = z.object({
     name: z.string(),
     sprites: z.object({
         front_default: z.url(),
-        front_shiny: z.optional(z.url()),
+        front_shiny: z.url(),
     }),
     stats: z.array(
         z.object({

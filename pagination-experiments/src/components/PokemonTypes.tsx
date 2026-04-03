@@ -32,12 +32,9 @@ export function PokemonTypes({ types }: PokemonTypesProps) {
     }
 
     return (
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col items-center gap-1">
             {pairs.map((pair, pairIdx) => (
-                <div
-                    key={pairIdx}
-                    className={`flex gap-2 ${pair.length === 1 ? "justify-center" : ""}`}
-                >
+                <div key={pairIdx} className={`flex gap-2`}>
                     {pair.map(({ type }) => (
                         <span
                             key={type.name}

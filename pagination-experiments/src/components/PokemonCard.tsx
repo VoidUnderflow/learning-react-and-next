@@ -11,7 +11,7 @@ interface PokemonCardProps {
 
 export function PokemonCard({ pokemon }: PokemonCardProps) {
     return (
-        <Card className="w-xs">
+        <Card className="w-3xs">
             <CardHeader>
                 <CardTitle className="text-center capitalize">
                     {pokemon.name}

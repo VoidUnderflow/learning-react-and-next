@@ -22,7 +22,11 @@ function StatRow({ statName, baseStat }: StatRowProps) {
 
     return (
         <div className="flex items-center gap-2">
-            <img src={iconUrl} alt={statName} className="size-5 shrink-0 object-contain" />
+            <img
+                src={iconUrl}
+                alt={statName}
+                className="size-5 shrink-0 object-contain"
+            />
             <span className="text-sm font-semibold">{baseStat}</span>
         </div>
     );
@@ -34,9 +38,13 @@ interface PokemonStatsProps {
 
 export function PokemonStats({ stats }: PokemonStatsProps) {
     return (
-        <div className="grid grid-cols-2 gap-x-4 gap-y-1">
+        <div className="mx-auto grid grid-cols-2 gap-x-4 gap-y-1">
             {stats.map(({ base_stat, stat }) => (
-                <StatRow key={stat.name} statName={stat.name} baseStat={base_stat} />
+                <StatRow
+                    key={stat.name}
+                    statName={stat.name}
+                    baseStat={base_stat}
+                />
             ))}
         </div>
     );

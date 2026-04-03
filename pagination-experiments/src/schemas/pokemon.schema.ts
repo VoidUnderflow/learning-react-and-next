@@ -1,7 +1,7 @@
 import z from "zod";
 
 /** Schema for response to: https://pokeapi.co/api/v2/pokemon */
-export const PokemonEndpointSchema = z.object({
+export const PokemonPageSchema = z.object({
     count: z.int(),
     next: z.url(),
     results: z.array(
@@ -12,7 +12,7 @@ export const PokemonEndpointSchema = z.object({
     ),
 });
 
-export type PokemonEndpointResponse = z.infer<typeof PokemonEndpointSchema>;
+export type PokemonPage = z.infer<typeof PokemonPageSchema>;
 
 /** Schema for response to: https://pokeapi.co/api/v2/pokemon/{id} */
 export const PokemonSchema = z.object({

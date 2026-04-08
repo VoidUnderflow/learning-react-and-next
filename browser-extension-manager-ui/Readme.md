@@ -2,6 +2,8 @@
 
 This is a solution to the [Browser extensions manager UI challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/browser-extension-manager-ui-yNZnOfsMAp) using React, Tailwind, and Vite.
 
+![Project screenshot](./browser-manager-screenshot.png)
+
 ### The challenge
 
 Users should be able to:

@@ -5,6 +5,9 @@ This is a solution to Frontend Mentor's [Advice generator app](https://www.front
 ## Overview
 
 Quick practice while I figure out how to structure a larger Django + React project.
+Note: some of the advice may be NSFW.
+
+![Screenshot](./advice-screenshot.png)
 
 ### Objectives
 

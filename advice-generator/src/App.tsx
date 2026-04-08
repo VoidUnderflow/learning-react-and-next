@@ -13,7 +13,9 @@ function App() {
 
   async function getAdvice() {
     try {
-      const response = await fetch("https://api.adviceslip.com/advice");
+      const response = await fetch(
+        `https://api.adviceslip.com/advice?t=${Date.now()}`,
+      );
       const data = await response.json();
       setAdviceData({ id: data.slip.id, advice: data.slip.advice });
     } catch (error) {
@@ -42,7 +44,10 @@ function App() {
           src="/images/pattern-divider-desktop.svg"
           alt=""
         />
-        <button onClick={getAdvice} className="absolute -bottom-6 dice-button">
+        <button
+          onClick={() => getAdvice()}
+          className="absolute -bottom-6 dice-button"
+        >
           <img src="/images/icon-dice.svg" alt="" />
         </button>
       </div>

@@ -43,3 +43,11 @@ Ordered by decreasing complexity/effort:
 
 - [**Learn Next**](./learn-next/)
   Official Next.js tutorial, needed a refresher for my website.
+
+In progress:
+
+- [**Weather App**](./weather-app/)
+  Frontend Mentor [challenge](https://www.frontendmentor.io/challenges/weather-app-K1FhddVm49) focused on API integration.
+
+- [**Framer Motion Practice**](./framer-motion-practice/)
+  Getting better at framer motion through their examples and whatever else I can find around.

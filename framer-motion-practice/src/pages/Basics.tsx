@@ -2,6 +2,7 @@ import Counter from "../components/basics/counter";
 import { motion } from "motion/react";
 import ToggleButton from "../components/basics/toggle-button";
 import KeyFrames from "../components/basics/keyframes";
+import GestureButton from "../components/basics/gesture-button";
 
 export default function Basics() {
   return (
@@ -39,6 +40,8 @@ export default function Basics() {
       <ToggleButton />
       <p>Keyframes</p>
       <KeyFrames />
+      <p>Button with gestures</p>
+      <GestureButton />
     </div>
   );
 }

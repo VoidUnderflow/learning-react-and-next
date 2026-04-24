@@ -1,10 +1,11 @@
 import Counter from "../components/basics/counter";
 import { motion } from "motion/react";
 import ToggleButton from "../components/basics/toggle-button";
+import KeyFrames from "../components/basics/keyframes";
 
 export default function Basics() {
   return (
-    <div className="items-center flex flex-col gap-4">
+    <div className="flex flex-col items-center gap-4">
       <h2 className="text-xl font-bold">Basics</h2>
       <p>Counter</p>
       <Counter />
@@ -13,7 +14,7 @@ export default function Basics() {
         Opacity?
       </motion.div>
       <motion.button
-        className="p-3 bg-white text-black font-bold rounded-md"
+        className="rounded-md bg-white p-3 font-bold text-black"
         initial={{
           maskImage: "linear-gradient(to right, black 0%, transparent 0%)",
         }}
@@ -25,7 +26,7 @@ export default function Basics() {
         Neat transition
       </motion.button>
       <motion.button
-        className="bg-white text-black rounded-md font-bold p-3"
+        className="rounded-md bg-white p-3 font-bold text-black"
         initial={{ y: 10 }}
         animate={{ y: 0 }}
         whileHover={{ scale: 1.1 }}
@@ -36,6 +37,8 @@ export default function Basics() {
       </motion.button>
       <p>Toggle button</p>
       <ToggleButton />
+      <p>Keyframes</p>
+      <KeyFrames />
     </div>
   );
 }

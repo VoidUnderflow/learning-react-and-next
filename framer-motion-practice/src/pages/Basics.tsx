@@ -6,8 +6,8 @@ import GestureButton from "../components/basics/gesture-button";
 
 export default function Basics() {
   return (
-    <div className="flex flex-col items-center gap-4">
-      <h2 className="text-xl font-bold">Basics</h2>
+    <div className="page-layout">
+      <h2>Basics</h2>
       <p>Counter</p>
       <Counter />
       <p>Tiny things</p>

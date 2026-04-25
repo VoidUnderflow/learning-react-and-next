@@ -17,7 +17,7 @@ export default function HollowVoidSvg() {
           fontWeight="bold"
           fontSize="128px"
           stroke="white"
-          strokeWidth={1}
+          strokeWidth={1.5}
           // Horizontal position of the text anchor point.
           // 50% -> halfway across the viewBox width, but start point may differ.
           x="50%"
@@ -30,6 +30,12 @@ export default function HollowVoidSvg() {
           // end => x == right edge
           textAnchor="middle"
           animate={{ fontSize: [128, 131, 128] }}
+          // Prioritise quality over speed.
+          textRendering="optimizeLegibility"
+          // Inherit font family from HTML(?)
+          fontFamily="inherit"
+          // Corners on letter strokes.
+          strokeLinejoin="round"
           transition={{
             duration: 1,
             ease: "easeInOut",

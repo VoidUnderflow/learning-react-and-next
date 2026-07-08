@@ -1,0 +1,82 @@
+.app {
+  max-width: 560px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.blurb {
+  color: #555;
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin: 1.5rem 0;
+}
+
+.control input[type="range"] {
+  width: 100%;
+}
+
+.hint {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.buttons button {
+  padding: 0.6rem 1.1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.buttons button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.buttons .action {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+.status {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.25rem 1rem;
+  padding: 1rem;
+  background: #f4f4f5;
+  border-radius: 8px;
+  font-family: ui-monospace, monospace;
+  font-size: 0.9rem;
+}
+
+.status dt {
+  color: #777;
+}
+
+.status dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+@media (prefers-color-scheme: dark) {
+  .blurb {
+    color: #aaa;
+  }
+  .status {
+    background: #27272a;
+  }
+}

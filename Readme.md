@@ -35,6 +35,9 @@ Ordered by decreasing complexity/effort:
 - [**Simple GitHub Issue Tracker**](./simple-issue-tracker/)
   Very simple GitHub issue tracker, made to refresh my knowledge of React Query and Redux.
 
+- [**Delayed Disable Button**](./delayed-disable-button/)
+  A button that disables only if its triggering async call takes longer than 300ms, with a Vitest suite proving the timer + async behaviour is testable with fake timers.
+
 - [**Next.js streaming + React Suspense tutorial**](./nextjs-streaming-tutorial)
   Following this [tutorial](https://www.freecodecamp.org/news/the-nextjs-15-streaming-handbook/).
 

@@ -13,11 +13,6 @@ import { weatherIconForCode } from "@/lib/weatherIcon";
 import { formatDayLabel, formatHourLabel } from "@/lib/dateFormatters";
 
 const VISIBLE_ROW_COUNT = 7;
-const ROW_GAP_REM = 1.25;
-
-const rowHeight = `calc((100% - ${
-  ROW_GAP_REM * (VISIBLE_ROW_COUNT - 1)
-}rem) / ${VISIBLE_ROW_COUNT})`;
 
 const PLACEHOLDER_LABEL = "—";
 
@@ -38,7 +33,7 @@ export function HourlyForecast({
   const isLoading = !hourly;
 
   return (
-    <div className="bg-neutral-800 flex h-full min-h-0 flex-col gap-6 rounded-xl p-4">
+    <div className="bg-neutral-800 flex h-144 min-h-0 flex-col gap-6 rounded-xl p-4 lg:h-full">
       <div className="flex items-center justify-between">
         <p className="text-xl font-bold">Hourly forecast</p>
         <DropdownMenu>
@@ -77,20 +72,18 @@ export function HourlyForecast({
         </DropdownMenu>
       </div>
 
-      <div className="hourly-scroll -mr-4 flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto pr-4">
+      <div className="hourly-scroll flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto lg:-mr-4 lg:pr-4">
         {isLoading &&
           Array.from({ length: VISIBLE_ROW_COUNT }, (_unused, idx) => (
             <div
               key={idx}
-              style={{ height: rowHeight }}
-              className="bg-neutral-700 border-neutral-600 shrink-0 rounded-lg border"
+              className="hourly-row bg-neutral-700 border-neutral-600 shrink-0 rounded-lg border"
             />
           ))}
         {entries.map((entry) => (
           <div
             key={entry.time}
-            style={{ height: rowHeight }}
-            className="bg-neutral-700 border-neutral-600 flex shrink-0 items-center justify-between rounded-lg border px-3"
+            className="hourly-row bg-neutral-700 border-neutral-600 flex shrink-0 items-center justify-between rounded-lg border px-3"
           >
             <div className="flex items-center gap-1">
               <img

@@ -195,6 +195,16 @@ body {
   }
 }
 
+.hourly-row {
+  height: 4rem;
+}
+
+@media (width >= 64rem) {
+  .hourly-row {
+    height: calc((100% - 7.5rem) / 7);
+  }
+}
+
 .hourly-scroll::-webkit-scrollbar {
   width: 4px;
 }

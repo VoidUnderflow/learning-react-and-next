@@ -44,17 +44,19 @@ export function TodayOverview({
           </div>
         ) : (
           <>
-            <div>
-              <p className="text-2xl font-medium">{locationName}</p>
+            <div className="min-w-0 text-center lg:text-left">
+              <p className="text-2xl font-medium wrap-break-word">
+                {locationName}
+              </p>
               <p className="text-neutral-200">{formatFullDate(todayISODate)}</p>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex shrink-0 items-center gap-4">
               <img
                 src={weatherIconForCode(current.weather_code)}
                 alt=""
-                className="size-20"
+                className="size-16 lg:size-20"
               />
-              <p className="font-display text-6xl italic">
+              <p className="font-display text-5xl italic lg:text-6xl">
                 {Math.round(current.temperature_2m)}°
               </p>
             </div>
@@ -62,7 +64,7 @@ export function TodayOverview({
         )}
       </div>
 
-      <div className="grid shrink-0 grid-cols-4 gap-8">
+      <div className="grid shrink-0 grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-8">
         <div className="bg-neutral-800 flex flex-col gap-2 rounded-md p-4">
           <p className="text-neutral-200">Feels Like</p>
           <p className="text-2xl">
@@ -84,7 +86,7 @@ export function TodayOverview({
           </p>
         </div>
         <div className="bg-neutral-800 flex flex-col gap-2 rounded-md p-4">
-          <p className="text-neutral-200">Precipitation</p>
+          <p className="text-neutral-200 wrap-break-word">Precipitation</p>
           <p className="text-2xl">
             {current
               ? `${current.precipitation} ${precipitationUnitLabel(precipitationUnit)}`

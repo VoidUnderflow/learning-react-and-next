@@ -27,9 +27,9 @@ export function SearchInput() {
   }, [data, isLoading, setHasNoSearchResults]);
 
   return (
-    <div className="w-full max-w-2xl">
+    <div className="w-full max-w-116 lg:max-w-2xl">
       {/* Search container */}
-      <div className="flex items-center gap-6 rounded-md">
+      <div className="flex flex-col items-stretch gap-3 rounded-md lg:flex-row lg:items-center lg:gap-6">
         {/* Icon + input */}
         <div className="bg-popover relative flex-1 rounded-md">
           <img
@@ -48,7 +48,7 @@ export function SearchInput() {
           />
         </div>
         {/* Search button */}
-        <Button variant={"search"} size="lg" className="py-2">
+        <Button variant={"search"} size="lg" className="w-full py-2 lg:w-auto">
           Search
         </Button>
       </div>

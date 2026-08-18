@@ -27,23 +27,23 @@ function App() {
         <SearchInput />
       </div>
       {/* Search bar */}
-      {isLoading && <p>Loading forecast...</p>}
       {isError && <p>Something went wrong fetching the forecast.</p>}
-      {data && selectedLocation && (
+      {selectedLocation && !isError && (
         <div className="mx-auto mt-8 grid w-full max-w-7xl min-h-0 flex-1 grid-cols-3 items-stretch gap-6">
           <div className="col-span-2 flex min-h-0 flex-col gap-8">
             <TodayOverview
               locationName={displayCityCountry(selectedLocation)}
-              todayISODate={data.daily.time[0]}
-              current={data.current}
+              todayISODate={data?.daily.time[0] ?? ""}
+              current={data?.current}
+              isLoading={isLoading}
             />
-            <DailyForecast daily={data.daily} />
+            <DailyForecast daily={data?.daily} />
           </div>
           <div className="flex min-h-0 flex-col">
             <HourlyForecast
-              hourly={data.hourly}
-              availableISODates={data.daily.time}
-              defaultISODate={data.daily.time[0]}
+              hourly={data?.hourly}
+              availableISODates={data?.daily.time}
+              defaultISODate={data?.daily.time[0]}
             />
           </div>
         </div>

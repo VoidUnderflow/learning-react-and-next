@@ -215,6 +215,23 @@ body {
   background: transparent;
 }
 
+@keyframes loading-dot-undulate {
+  0%,
+  80%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  40% {
+    transform: translateY(-0.4rem);
+    opacity: 1;
+  }
+}
+
+.loading-dot {
+  animation: loading-dot-undulate 1.4s infinite ease-in-out both;
+}
+
 .hourly-scroll::-webkit-scrollbar-thumb {
   background-color: var(--color-neutral-700);
   border-radius: 9999px;

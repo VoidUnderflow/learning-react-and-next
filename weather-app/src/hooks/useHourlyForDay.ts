@@ -8,8 +8,8 @@ export interface HourlyEntry {
 }
 
 export function useHourlyForDay(
-  hourly: HourlyForecast | undefined,
-  dayISODate: string | undefined
+  hourly?: HourlyForecast,
+  dayISODate?: string
 ): HourlyEntry[] {
   return useMemo(() => {
     if (!hourly || !dayISODate) return [];

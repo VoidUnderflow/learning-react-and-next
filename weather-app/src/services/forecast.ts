@@ -69,9 +69,6 @@ export async function fetchForecast(
   longitude: number,
   units: ForecastUnits
 ): Promise<ForecastResponse> {
-  // TEMPORARY: artificial delay to inspect the loading state. Remove.
-  await new Promise((resolve) => setTimeout(resolve, 5000));
-
   const queryURL = buildForecastURL(latitude, longitude, units);
   const response = await axios.get(queryURL);
   return ForecastResponseSchema.parse(response.data);

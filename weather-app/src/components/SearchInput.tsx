@@ -1,5 +1,5 @@
 import { useGeocodingSearch } from "@/hooks/useGeocodingSearch";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { displayLocation, type GeocodingResult } from "@/services/geocoding";
 import { useLocationStore } from "@/stores/locationStore";
@@ -9,12 +9,21 @@ export function SearchInput() {
   const setSelectedLocation = useLocationStore(
     (state) => state.setSelectedLocation
   );
+  const setHasNoSearchResults = useLocationStore(
+    (state) => state.setHasNoSearchResults
+  );
   const [searchTerm, setSearchTerm] = useState<string>(
     selectedLocation ? displayLocation(selectedLocation, false) : ""
   );
-  const { data } = useGeocodingSearch(searchTerm);
+  const { data, isLoading } = useGeocodingSearch(searchTerm);
 
   const foundLocations: boolean = data !== undefined && data.length > 0;
+
+  useEffect(() => {
+    setHasNoSearchResults(
+      !isLoading && data !== undefined && data.length === 0
+    );
+  }, [data, isLoading, setHasNoSearchResults]);
 
   return (
     <div className="w-full max-w-2xl">

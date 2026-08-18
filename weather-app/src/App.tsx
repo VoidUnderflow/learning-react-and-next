@@ -9,6 +9,9 @@ import { displayCityCountry } from "@/services/geocoding";
 
 function App() {
   const selectedLocation = useLocationStore((state) => state.selectedLocation);
+  const hasNoSearchResults = useLocationStore(
+    (state) => state.hasNoSearchResults
+  );
   const { data, isLoading, isError } = useForecast(selectedLocation);
 
   return (
@@ -28,7 +31,12 @@ function App() {
       </div>
       {/* Search bar */}
       {isError && <p>Something went wrong fetching the forecast.</p>}
-      {selectedLocation && !isError && (
+      {hasNoSearchResults && (
+        <p className="text-center text-2xl font-bold">
+          No search results found!
+        </p>
+      )}
+      {selectedLocation && !isError && !hasNoSearchResults && (
         <div className="mx-auto mt-8 grid w-full max-w-7xl min-h-0 flex-1 grid-cols-3 items-stretch gap-6">
           <div className="col-span-2 flex min-h-0 flex-col gap-8">
             <TodayOverview

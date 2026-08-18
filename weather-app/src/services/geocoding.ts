@@ -39,3 +39,7 @@ export function displayLocation(
   strs.push(...[location.country, location.admin1, location.admin2]);
   return strs.filter((x) => x !== undefined).join(", ");
 }
+
+export function displayCityCountry(location: GeocodingResult): string {
+  return `${location.name}, ${location.country}`;
+}

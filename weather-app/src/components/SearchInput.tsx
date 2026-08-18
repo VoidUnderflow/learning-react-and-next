@@ -2,20 +2,24 @@ import { useGeocodingSearch } from "@/hooks/useGeocodingSearch";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { displayLocation, type GeocodingResult } from "@/services/geocoding";
+import { useLocationStore } from "@/stores/locationStore";
 
 export function SearchInput() {
-  // TODO: Do we need to split this into multiple things?
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const [selectedLocation, setSelectedLocation] =
-    useState<GeocodingResult | null>(null);
-  const { data, isLoading, error, isError } = useGeocodingSearch(searchTerm);
+  const selectedLocation = useLocationStore((state) => state.selectedLocation);
+  const setSelectedLocation = useLocationStore(
+    (state) => state.setSelectedLocation
+  );
+  const [searchTerm, setSearchTerm] = useState<string>(
+    selectedLocation ? displayLocation(selectedLocation, false) : ""
+  );
+  const { data } = useGeocodingSearch(searchTerm);
 
   const foundLocations: boolean = data !== undefined && data.length > 0;
 
   return (
     <div className="w-full max-w-2xl">
       {/* Search container */}
-      <div className="flex items-center gap-2 rounded-md">
+      <div className="flex items-center gap-6 rounded-md">
         {/* Icon + input */}
         <div className="bg-popover relative flex-1 rounded-md">
           <img
@@ -41,7 +45,7 @@ export function SearchInput() {
       {/* Search results for location */}
       {foundLocations && !selectedLocation && (
         <div className="bg-popover my-4 w-full rounded-md p-4">
-          <li className="flex max-h-40 flex-col gap-2 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <li className="flex max-h-40 scrollbar-none flex-col gap-2 overflow-y-auto [&::-webkit-scrollbar]:hidden">
             {data?.slice(0, 10).map((location: GeocodingResult) => (
               <ul
                 key={location.id}

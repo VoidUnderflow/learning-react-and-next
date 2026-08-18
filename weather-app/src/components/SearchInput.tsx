@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { displayLocation, type GeocodingResult } from "@/services/geocoding";
 import { useLocationStore } from "@/stores/locationStore";
+import { LoadingSpinner } from "./LoadingSpinner";
 
 export function SearchInput() {
   const selectedLocation = useLocationStore((state) => state.selectedLocation);
@@ -51,8 +52,16 @@ export function SearchInput() {
           Search
         </Button>
       </div>
+      {isLoading && !selectedLocation && (
+        <div className="bg-popover my-4 w-full rounded-md p-4">
+          <div className="flex items-center gap-3 p-1">
+            <LoadingSpinner className="size-5" />
+            <p>Search in progress</p>
+          </div>
+        </div>
+      )}
       {/* Search results for location */}
-      {foundLocations && !selectedLocation && (
+      {!isLoading && foundLocations && !selectedLocation && (
         <div className="bg-popover my-4 w-full rounded-md p-4">
           <li className="flex max-h-40 scrollbar-none flex-col gap-2 overflow-y-auto [&::-webkit-scrollbar]:hidden">
             {data?.slice(0, 10).map((location: GeocodingResult) => (

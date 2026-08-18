@@ -25,6 +25,9 @@ function buildQueryURL(locationName: string, count: number = 10): string {
 export async function searchLocation(
   locationName: string
 ): Promise<GeocodingResult[]> {
+  // TEMPORARY: artificial delay to inspect the search-in-progress state. Remove.
+  await new Promise((resolve) => setTimeout(resolve, 3000));
+
   const queryURL = buildQueryURL(locationName);
   const response = await axios.get(queryURL);
   const parsed = GeocodingResponseSchema.parse(response.data);

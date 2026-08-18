@@ -13,13 +13,8 @@ import { weatherIconForCode } from "@/lib/weatherIcon";
 import { formatDayLabel, formatHourLabel } from "@/lib/dateFormatters";
 
 const VISIBLE_ROW_COUNT = 7;
-/** Keep in sync with the `gap-5` class on the scroll container below. */
 const ROW_GAP_REM = 1.25;
 
-/**
- * Rows divide the list's height evenly: exactly VISIBLE_ROW_COUNT fit at any
- * container height, with the remaining entries reachable by scrolling.
- */
 const rowHeight = `calc((100% - ${
   ROW_GAP_REM * (VISIBLE_ROW_COUNT - 1)
 }rem) / ${VISIBLE_ROW_COUNT})`;
@@ -38,8 +33,6 @@ export function HourlyForecast({
   defaultISODate,
 }: HourlyForecastProps) {
   const [pickedISODate, setPickedISODate] = useState<string>();
-  // Falls back to the default until the user picks a day, since the default is
-  // undefined while the forecast is still loading.
   const selectedISODate = pickedISODate ?? defaultISODate;
   const entries = useHourlyForDay(hourly, selectedISODate);
   const isLoading = !hourly;

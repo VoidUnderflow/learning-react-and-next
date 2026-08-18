@@ -195,12 +195,6 @@ body {
   }
 }
 
-/*
- * Thin scrollbar in the same grey as the day selector, flush to the edge.
- * Deliberately no `scrollbar-width`/`scrollbar-color`: the standard properties
- * override the ::-webkit-scrollbar rules in Chromium and re-add the arrow
- * buttons, which cannot be hidden through the standard API.
- */
 .hourly-scroll::-webkit-scrollbar {
   width: 4px;
 }
@@ -230,6 +224,20 @@ body {
 
 .loading-dot {
   animation: loading-dot-undulate 1.4s infinite ease-in-out both;
+}
+
+@keyframes spinner-dot-fade {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.15;
+  }
+}
+
+.spinner-dot {
+  animation: spinner-dot-fade 1s infinite linear;
 }
 
 .hourly-scroll::-webkit-scrollbar-thumb {

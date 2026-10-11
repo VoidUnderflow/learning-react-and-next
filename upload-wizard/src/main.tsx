@@ -12,14 +12,14 @@ async function bootstrapMSW() {
     const { worker } = await import("./mocks/browser.ts");
     await worker.start({ onUnhandledFrame: "bypass" });
   }
-}
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <App />
-    </QueryClientProvider>
-  </StrictMode>,
-);
+  createRoot(document.getElementById("root")!).render(
+    <StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
+    </StrictMode>,
+  );
+}
 
 void bootstrapMSW();

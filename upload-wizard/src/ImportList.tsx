@@ -1,5 +1,5 @@
 import type { ImportType } from "./importTypes.ts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useWizardStore } from "./store/useWizardStore.ts";
 import { Label, ListBox, ListBoxItem, SearchField, Typography } from "@heroui/react";
 
@@ -9,8 +9,16 @@ interface ImportListProps {
 
 export default function ImportList({ importTypes }: ImportListProps) {
   const [search, setSearch] = useState("");
+  useEffect(() => {
+    return useWizardStore.subscribe((state, previousState) => {
+      if (state.stage === "select-import-type" && state.stage !== previousState.stage) {
+        setSearch("");
+      }
+    });
+  }, []);
 
   const selectedTypeId = useWizardStore((state) => state.selectedTypeId);
+  const isImporting = useWizardStore((state) => state.isImporting);
   const selectImportType = useWizardStore((state) => state.selectImportType);
 
   // Filter displayed items based on user input.
@@ -29,6 +37,9 @@ export default function ImportList({ importTypes }: ImportListProps) {
       </SearchField>
       {filteredTypes.length > 0 ? (
         <ListBox
+          aria-label="Import types"
+          disallowEmptySelection
+          disabledKeys={isImporting ? importTypes.map((type) => type.id) : []}
           selectionMode={"single"}
           selectedKeys={selectedTypeId ? [selectedTypeId] : []}
           onSelectionChange={(keys) => {

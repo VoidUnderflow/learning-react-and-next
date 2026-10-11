@@ -4,9 +4,13 @@ import { importTypes } from "./importTypes.ts";
 import { useWizardStore } from "./store/useWizardStore.ts";
 import SelectImportStage from "./stages/SelectImportStage.tsx";
 import SelectFileStage from "./stages/SelectFileStage.tsx";
+import ValidationStage from "./stages/ValidationStage";
+import SuccessStage from "./stages/SuccessStage";
 
 export default function UploadWizard() {
   const stage = useWizardStore((state) => state.stage);
+  const file = useWizardStore((state) => state.file);
+  const attemptId = useWizardStore((state) => state.attemptId);
   const selectedTypeId = useWizardStore((state) => state.selectedTypeId);
   const selectedType = importTypes.find((type) => type.id === selectedTypeId);
 
@@ -27,6 +31,15 @@ export default function UploadWizard() {
           <div>
             {stage === "select-import-type" && <SelectImportStage />}
             {stage === "select-file" && selectedType && <SelectFileStage />}
+            {stage === "validation-stage" && selectedType && file && attemptId && (
+              <ValidationStage
+                key={attemptId}
+                typeId={selectedType.id}
+                file={file}
+                attemptId={attemptId}
+              />
+            )}
+            {stage === "success" && <SuccessStage />}
           </div>
         </section>
       </div>

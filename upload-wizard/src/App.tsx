@@ -1,4 +1,3 @@
-import "./App.css";
 import UploadWizard from "./UploadWizard.tsx";
 
 function App() {

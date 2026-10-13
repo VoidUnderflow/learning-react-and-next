@@ -10,11 +10,12 @@ interface ImportListProps {
 export default function ImportList({ importTypes }: ImportListProps) {
   const [search, setSearch] = useState("");
   useEffect(() => {
-    return useWizardStore.subscribe((state, previousState) => {
-      if (state.stage === "select-import-type" && state.stage !== previousState.stage) {
-        setSearch("");
-      }
-    });
+    return useWizardStore.subscribe(
+      (state) => state.stage,
+      (stage) => {
+        if (stage === "select-import-type") setSearch("");
+      },
+    );
   }, []);
 
   const selectedTypeId = useWizardStore((state) => state.selectedTypeId);
@@ -28,7 +29,12 @@ export default function ImportList({ importTypes }: ImportListProps) {
 
   return (
     <div className={"flex flex-col"}>
-      <SearchField aria-label="Filter import types" value={search} onChange={setSearch} className="flex h-20 shrink-0 justify-center px-4">
+      <SearchField
+        aria-label="Filter import types"
+        value={search}
+        onChange={setSearch}
+        className="flex h-20 shrink-0 justify-center px-4"
+      >
         <SearchField.Group className="border-accent!">
           <SearchField.SearchIcon aria-hidden="true" />
           <SearchField.Input placeholder={"Search..."} />

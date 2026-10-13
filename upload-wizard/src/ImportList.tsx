@@ -1,7 +1,7 @@
 import type { ImportType } from "./importTypes.ts";
 import { useEffect, useState } from "react";
 import { useWizardStore } from "./store/useWizardStore.ts";
-import { Label, ListBox, ListBoxItem, SearchField, Typography } from "@heroui/react";
+import { Label, ListBox, ListBoxItem, SearchField, Separator, Typography } from "@heroui/react";
 
 interface ImportListProps {
   importTypes: ImportType[];
@@ -27,16 +27,18 @@ export default function ImportList({ importTypes }: ImportListProps) {
   );
 
   return (
-    <div className={"flex flex-col gap-4"}>
-      <SearchField value={search} onChange={setSearch}>
-        <Label className={"typography typography--h4"}>Filter import types</Label>
-        <SearchField.Group>
+    <div className={"flex flex-col"}>
+      <SearchField aria-label="Filter import types" value={search} onChange={setSearch} className="flex h-20 shrink-0 justify-center px-4">
+        <SearchField.Group className="border-accent!">
+          <SearchField.SearchIcon aria-hidden="true" />
           <SearchField.Input placeholder={"Search..."} />
           <SearchField.ClearButton />
         </SearchField.Group>
       </SearchField>
+      <Separator className="h-px" />
       {filteredTypes.length > 0 ? (
         <ListBox
+          className={"p-4"}
           aria-label="Import types"
           disallowEmptySelection
           disabledKeys={isImporting ? importTypes.map((type) => type.id) : []}
